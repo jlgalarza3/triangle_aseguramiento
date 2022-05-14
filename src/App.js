@@ -13,9 +13,9 @@ function App() {
     if (sideA <= 0 || sideB <= 0 || sideC <= 0) {
       setResult("Entrada no válida");
     } else if (
-      sideA >= sideB + sideC ||
-      sideC >= sideB + sideA ||
-      sideB >= sideA + sideC
+      sideA >= Number(sideB) + Number(sideC) ||
+      sideC >= Number(sideB) + Number(sideA) ||
+      sideB >= Number(sideA) + Number(sideC)
     ) {
       setResult("No es un triángulo");
     } else if (sideA === sideB && sideB === sideC) {
