@@ -10,19 +10,30 @@ function App() {
   const [result, setResult] = useState("");
 
   useEffect(() => {
-    if (sideA <= 0 || sideB <= 0 || sideC <= 0) {
+    if (Number(sideA) <= 0 || Number(sideB) <= 0 || Number(sideC) <= 0) {
       setResult("Entrada no válida");
     } else if (
-      sideA >= Number(sideB) + Number(sideC) ||
-      sideC >= Number(sideB) + Number(sideA) ||
-      sideB >= Number(sideA) + Number(sideC)
+      Number(sideA) >= Number(sideB) + Number(sideC) ||
+      Number(sideC) >= Number(sideB) + Number(sideA) ||
+      Number(sideB) >= Number(sideA) + Number(sideC)
     ) {
       setResult("No es un triángulo");
-    } else if (sideA === sideB && sideB === sideC) {
+    } else if (
+      Number(sideA) === Number(sideB) &&
+      Number(sideB) === Number(sideC)
+    ) {
       setResult("Triángulo Equilatero");
-    } else if (sideA !== sideB && sideB !== sideC && sideC !== sideA) {
+    } else if (
+      Number(sideA) !== Number(sideB) &&
+      Number(sideB) !== Number(sideC) &&
+      Number(sideC) !== Number(sideA)
+    ) {
       setResult("Triángulo Escaleno");
-    } else if (sideA === sideB || sideC === sideA || sideC === sideB) {
+    } else if (
+      Number(sideA) === Number(sideB) ||
+      Number(sideC) === Number(sideA) ||
+      Number(sideC) === Number(sideB)
+    ) {
       setResult("Triángulo Isosceles");
     }
   }, [sideA, sideB, sideC]);
@@ -73,13 +84,18 @@ function App() {
         <TextField
           type="number"
           value={sideA}
-          onChange={(e) => setSideA(e.target.value)}
+          onChange={(e) => {
+            const regex = /[1-9]\d*/;
+            if (e.target.value === "" || regex.test(e.target.value)) {
+              setSideA(e.target.value);
+            }
+          }}
           id="outlined-basic"
           label="Lado A"
           variant="outlined"
           required
           InputProps={{
-            inputProps: { min: 0 },
+            inputProps: { min: 1 },
           }}
           onKeyPress={(event) => {
             if (
@@ -95,13 +111,18 @@ function App() {
         <TextField
           type="number"
           value={sideB}
-          onChange={(e) => setSideB(e.target.value)}
+          onChange={(e) => {
+            const regex = /[1-9]\d*/;
+            if (e.target.value === "" || regex.test(e.target.value)) {
+              setSideB(e.target.value);
+            }
+          }}
           id="outlined-basic"
           label="Lado B"
           variant="outlined"
           required
           InputProps={{
-            inputProps: { min: 0 },
+            inputProps: { min: 1 },
           }}
           onKeyPress={(event) => {
             if (
@@ -117,7 +138,12 @@ function App() {
         <TextField
           type="number"
           value={sideC}
-          onChange={(e) => setSideC(e.target.value)}
+          onChange={(e) => {
+            const regex = /[1-9]\d*/;
+            if (e.target.value === "" || regex.test(e.target.value)) {
+              setSideC(e.target.value);
+            }
+          }}
           id="outlined-basic"
           label="Lado C"
           variant="outlined"
