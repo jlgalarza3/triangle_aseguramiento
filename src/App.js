@@ -144,16 +144,7 @@ function App() {
           InputProps={{
             inputProps: { min: 0 },
           }}
-          onKeyPress={(event) => {
-            if (
-              event?.key === "-" ||
-              event?.key === "+" ||
-              event?.key === "." ||
-              event?.key === ","
-            ) {
-              event.preventDefault();
-            }
-          }}
+          onKeyPress={(event) => avoidSigns(event)}
         />
         <Divider style={{ width: "100%" }} />
         <div
