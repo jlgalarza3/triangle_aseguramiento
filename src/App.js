@@ -38,6 +38,17 @@ function App() {
     }
   }, [sideA, sideB, sideC]);
 
+  const avoidSigns = (event) => {
+    if (
+      event?.key === "-" ||
+      event?.key === "+" ||
+      event?.key === "." ||
+      event?.key === ","
+    ) {
+      event.preventDefault();
+    }
+  };
+
   return (
     <div
       style={{
@@ -97,16 +108,7 @@ function App() {
           InputProps={{
             inputProps: { min: 1 },
           }}
-          onKeyPress={(event) => {
-            if (
-              event?.key === "-" ||
-              event?.key === "+" ||
-              event?.key === "." ||
-              event?.key === ","
-            ) {
-              event.preventDefault();
-            }
-          }}
+          onKeyPress={(event) => avoidSigns(event)}
         />
         <TextField
           type="number"
@@ -124,16 +126,7 @@ function App() {
           InputProps={{
             inputProps: { min: 1 },
           }}
-          onKeyPress={(event) => {
-            if (
-              event?.key === "-" ||
-              event?.key === "+" ||
-              event?.key === "." ||
-              event?.key === ","
-            ) {
-              event.preventDefault();
-            }
-          }}
+          onKeyPress={(event) => avoidSigns(event)}
         />
         <TextField
           type="number"
